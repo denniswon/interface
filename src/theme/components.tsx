@@ -261,3 +261,22 @@ export const SmallOnly = styled.span`
     display: block;
   `};
 `
+
+export const OnlyMedium = styled.span`
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+    display: none;
+  `};
+`
+
+export const HideMedium = styled.span`
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+    display: none;
+  `};
+`
+
+export const ExtraSmallOnly = styled.span`
+  display: none;
+  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+    display: block;
+  `};
+`

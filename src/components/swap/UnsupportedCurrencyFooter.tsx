@@ -11,7 +11,7 @@ import { useState } from 'react'
 import styled from 'styled-components/macro'
 import { CloseIcon, ExternalLink, TYPE, Z_INDEX } from 'theme'
 
-import { useUnsupportedTokens } from '../../hooks/Tokens'
+import { useUnsupportedTokens } from '../../hooks/tokens'
 import { ExplorerDataType, getExplorerLink } from '../../utils/getExplorerLink'
 
 const DetailsFooter = styled.div<{ show: boolean }>`

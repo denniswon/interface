@@ -1,7 +1,7 @@
 import { Trans } from '@lingui/macro'
 import { Currency, CurrencyAmount, Percent } from '@uniswap/sdk-core'
 import { Position } from '@uniswap/v3-sdk'
-import { useToken } from 'hooks/Tokens'
+import { useToken } from 'hooks/tokens'
 import { usePool } from 'hooks/usePools'
 import { useV3PositionFees } from 'hooks/useV3PositionFees'
 import { useActiveWeb3React } from 'hooks/web3'

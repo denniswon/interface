@@ -1,5 +1,6 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit'
 import { DEFAULT_TXN_DISMISS_MS } from 'constants/misc'
+import { EthereumNetworkInfo, NetworkInfo } from 'constants/networks'
 
 export type PopupContent = {
   txn: {
@@ -29,6 +30,12 @@ export interface ApplicationState {
   readonly implements3085: boolean
   readonly openModal: ApplicationModal | null
   readonly popupList: PopupList
+  readonly subgraphStatus: {
+    available: boolean | null
+    syncedBlock: number | undefined
+    headBlock: number | undefined
+  }
+  readonly activeNetworkVersion: NetworkInfo
 }
 
 const initialState: ApplicationState = {
@@ -38,6 +45,12 @@ const initialState: ApplicationState = {
   implements3085: false,
   openModal: null,
   popupList: [],
+  subgraphStatus: {
+    available: null,
+    syncedBlock: undefined,
+    headBlock: undefined,
+  },
+  activeNetworkVersion: EthereumNetworkInfo,
 }
 
 const applicationSlice = createSlice({
@@ -82,6 +95,12 @@ const applicationSlice = createSlice({
     setChainConnectivityWarning(state, { payload: { warn } }) {
       state.chainConnectivityWarning = warn
     },
+    updateSubgraphStatus(state, { payload: { available, syncedBlock, headBlock } }) {
+      state.subgraphStatus = { available, syncedBlock, headBlock }
+    },
+    updateActiveNetworkVersion(state, { payload: { activeNetworkVersion } }) {
+      state.activeNetworkVersion = activeNetworkVersion
+    },
   },
 })
 
@@ -93,5 +112,7 @@ export const {
   removePopup,
   setImplements3085,
   setChainConnectivityWarning,
+  updateSubgraphStatus,
+  updateActiveNetworkVersion,
 } = applicationSlice.actions
 export default applicationSlice.reducer

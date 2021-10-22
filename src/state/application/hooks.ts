@@ -1,10 +1,28 @@
+import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
 import { DEFAULT_TXN_DISMISS_MS } from 'constants/misc'
+import { NetworkInfo, SupportedNetwork } from 'constants/networks'
 import { useCallback, useMemo } from 'react'
 import { useAppDispatch, useAppSelector } from 'state/hooks'
 
+import {
+  arbitrumBlockClient,
+  arbitrumClient,
+  blockClient,
+  client,
+  optimismBlockClient,
+  optimismClient,
+} from '../../apollo/client'
 import { useActiveWeb3React } from '../../hooks/web3'
 import { AppState } from '../index'
-import { addPopup, ApplicationModal, PopupContent, removePopup, setOpenModal } from './reducer'
+import {
+  addPopup,
+  ApplicationModal,
+  PopupContent,
+  removePopup,
+  setOpenModal,
+  updateActiveNetworkVersion,
+  updateSubgraphStatus,
+} from './reducer'
 
 export function useBlockNumber(): number | undefined {
   const { chainId } = useActiveWeb3React()
@@ -78,4 +96,81 @@ export function useRemovePopup(): (key: string) => void {
 export function useActivePopups(): AppState['application']['popupList'] {
   const list = useAppSelector((state: AppState) => state.application.popupList)
   return useMemo(() => list.filter((item) => item.show), [list])
+}
+
+// returns a function that allows adding a popup
+export function useSubgraphStatus(): [
+  {
+    available: boolean | null
+    syncedBlock: number | undefined
+    headBlock: number | undefined
+  },
+  (available: boolean | null, syncedBlock: number | undefined, headBlock: number | undefined) => void
+] {
+  const dispatch = useAppDispatch()
+  const status = useAppSelector((state: AppState) => state.application.subgraphStatus)
+
+  const update = useCallback(
+    (available: boolean | null, syncedBlock: number | undefined, headBlock: number | undefined) => {
+      dispatch(updateSubgraphStatus({ available, syncedBlock, headBlock }))
+    },
+    [dispatch]
+  )
+  return [status, update]
+}
+
+// returns a function that allows adding a popup
+export function useActiveNetworkVersion(): [NetworkInfo, (activeNetworkVersion: NetworkInfo) => void] {
+  const dispatch = useAppDispatch()
+  const activeNetwork = useAppSelector((state: AppState) => state.application.activeNetworkVersion)
+  const update = useCallback(
+    (activeNetworkVersion: NetworkInfo) => {
+      dispatch(updateActiveNetworkVersion({ activeNetworkVersion }))
+    },
+    [dispatch]
+  )
+  return [activeNetwork, update]
+}
+
+// get the apollo client related to the active network
+export function useDataClient(): ApolloClient<NormalizedCacheObject> {
+  const [activeNetwork] = useActiveNetworkVersion()
+  switch (activeNetwork.id) {
+    case SupportedNetwork.ETHEREUM:
+      return client
+    case SupportedNetwork.ARBITRUM:
+      return arbitrumClient
+    case SupportedNetwork.OPTIMISM:
+      return optimismClient
+    default:
+      return client
+  }
+}
+
+// get the apollo client related to the active network for fetching blocks
+export function useBlockClient(): ApolloClient<NormalizedCacheObject> {
+  const [activeNetwork] = useActiveNetworkVersion()
+  switch (activeNetwork.id) {
+    case SupportedNetwork.ETHEREUM:
+      return blockClient
+    case SupportedNetwork.ARBITRUM:
+      return arbitrumBlockClient
+    case SupportedNetwork.OPTIMISM:
+      return optimismBlockClient
+    default:
+      return blockClient
+  }
+}
+
+// Get all required subgraph clients
+export function useClients(): {
+  dataClient: ApolloClient<NormalizedCacheObject>
+  blockClient: ApolloClient<NormalizedCacheObject>
+} {
+  const dataClient = useDataClient()
+  const blockClient = useBlockClient()
+  return {
+    dataClient,
+    blockClient,
+  }
 }

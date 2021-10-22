@@ -12,8 +12,11 @@ import logs from './logs/slice'
 import mint from './mint/reducer'
 import mintV3 from './mint/v3/reducer'
 import multicall from './multicall/reducer'
+import pools from './pools/reducer'
+import protocol from './protocol/reducer'
 import { routingApi } from './routing/slice'
 import swap from './swap/reducer'
+import tokens from './tokens/reducer'
 import transactions from './transactions/reducer'
 import user from './user/reducer'
 
@@ -32,6 +35,9 @@ const store = configureStore({
     multicall,
     lists,
     logs,
+    pools,
+    protocol,
+    tokens,
     [dataApi.reducerPath]: dataApi.reducer,
     [routingApi.reducerPath]: routingApi.reducer,
   },

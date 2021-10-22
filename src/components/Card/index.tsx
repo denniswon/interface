@@ -45,3 +45,25 @@ export const BlueCard = styled(Card)`
   color: ${({ theme }) => theme.blue2};
   border-radius: 12px;
 `
+
+export const ScrollableX = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`
+
+export const GreyBadge = styled(Card)`
+  width: fit-content;
+  border-radius: 8px;
+  background: ${({ theme }) => theme.bg3};
+  color: ${({ theme }) => theme.text1};
+  padding: 4px 6px;
+  font-weight: 400;
+`

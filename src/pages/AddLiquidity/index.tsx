@@ -37,7 +37,7 @@ import { NONFUNGIBLE_POSITION_MANAGER_ADDRESSES } from '../../constants/addresse
 import { CHAIN_INFO, SupportedChainId } from '../../constants/chains'
 import { ZERO_PERCENT } from '../../constants/misc'
 import { WETH9_EXTENDED } from '../../constants/tokens'
-import { useCurrency } from '../../hooks/Tokens'
+import { useCurrency } from '../../hooks/tokens'
 import { ApprovalState, useApproveCallback } from '../../hooks/useApproveCallback'
 import { useArgentWalletContract } from '../../hooks/useArgentWalletContract'
 import { useV3NFTPositionManagerContract } from '../../hooks/useContract'

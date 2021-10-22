@@ -39,7 +39,7 @@ import {
 import SwapHeader from '../../components/swap/SwapHeader'
 import { SwitchLocaleLink } from '../../components/SwitchLocaleLink'
 import TokenWarningModal from '../../components/TokenWarningModal'
-import { useAllTokens, useCurrency } from '../../hooks/Tokens'
+import { useAllTokens, useCurrency } from '../../hooks/tokens'
 import { ApprovalState, useApproveCallbackFromTrade } from '../../hooks/useApproveCallback'
 import useENSAddress from '../../hooks/useENSAddress'
 import { useERC20PermitFromTrade, UseERC20PermitState } from '../../hooks/useERC20Permit'

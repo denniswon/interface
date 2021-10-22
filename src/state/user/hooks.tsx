@@ -5,20 +5,23 @@ import { SupportedLocale } from 'constants/locales'
 import { L2_DEADLINE_FROM_NOW } from 'constants/misc'
 import JSBI from 'jsbi'
 import { useCallback, useMemo } from 'react'
-import { shallowEqual } from 'react-redux'
+import { shallowEqual, useSelector } from 'react-redux'
 import { useAppDispatch, useAppSelector } from 'state/hooks'
 
 import { V2_FACTORY_ADDRESSES } from '../../constants/addresses'
 import { BASES_TO_TRACK_LIQUIDITY_FOR, PINNED_PAIRS } from '../../constants/routing'
-import { useAllTokens } from '../../hooks/Tokens'
+import { useAllTokens } from '../../hooks/tokens'
 import { useActiveWeb3React } from '../../hooks/web3'
 import { AppState } from '../index'
 import {
+  addSavedPool,
+  addSavedToken,
   addSerializedPair,
   addSerializedToken,
   removeSerializedToken,
   SerializedPair,
   SerializedToken,
+  toggleURLWarning,
   updateArbitrumAlphaAcknowledged,
   updateHideClosedPositions,
   updateOptimismAlphaAcknowledged,
@@ -258,6 +261,35 @@ export function usePairAdder(): (pair: Pair) => void {
 
 export function useURLWarningVisible(): boolean {
   return useAppSelector((state: AppState) => state.user.URLWarningVisible)
+}
+
+export function useURLWarningToggle(): () => void {
+  const dispatch = useAppDispatch()
+  return useCallback(() => dispatch(toggleURLWarning()), [dispatch])
+}
+
+export function useSavedTokens(): [string[], (address: string) => void] {
+  const dispatch = useAppDispatch()
+  const savedTokens = useAppSelector((state: AppState) => state.user.savedTokens)
+  const updatedSavedTokens = useCallback(
+    (address: string) => {
+      dispatch(addSavedToken({ address }))
+    },
+    [dispatch]
+  )
+  return [savedTokens ?? [], updatedSavedTokens]
+}
+
+export function useSavedPools(): [string[], (address: string) => void] {
+  const dispatch = useAppDispatch()
+  const savedPools = useSelector((state: AppState) => state.user.savedPools)
+  const updateSavedPools = useCallback(
+    (address: string) => {
+      dispatch(addSavedPool({ address }))
+    },
+    [dispatch]
+  )
+  return [savedPools ?? [], updateSavedPools]
 }
 
 /**

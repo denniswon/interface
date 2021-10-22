@@ -4,12 +4,15 @@ import { SupportedLocale } from 'constants/locales'
 import { DEFAULT_DEADLINE_FROM_NOW } from '../../constants/misc'
 import { updateVersion } from '../global/actions'
 import {
+  addSavedPool,
+  addSavedToken,
   addSerializedPair,
   addSerializedToken,
   removeSerializedPair,
   removeSerializedToken,
   SerializedPair,
   SerializedToken,
+  toggleURLWarning,
   updateArbitrumAlphaAcknowledged,
   updateHideClosedPositions,
   updateMatchesDarkMode,
@@ -63,6 +66,9 @@ export interface UserState {
     }
   }
 
+  savedTokens: string[]
+  savedPools: string[]
+
   timestamp: number
   URLWarningVisible: boolean
 }
@@ -85,6 +91,8 @@ export const initialState: UserState = {
   userDeadline: DEFAULT_DEADLINE_FROM_NOW,
   tokens: {},
   pairs: {},
+  savedTokens: [],
+  savedPools: [],
   timestamp: currentTimestamp(),
   URLWarningVisible: true,
 }
@@ -194,5 +202,30 @@ export default createReducer(initialState, (builder) =>
         delete state.pairs[chainId][pairKey(tokenBAddress, tokenAAddress)]
       }
       state.timestamp = currentTimestamp()
+    })
+    .addCase(addSavedToken, (state, { payload: { address } }) => {
+      if (!state.savedTokens || !state.savedTokens.includes(address)) {
+        const newTokens = state.savedTokens ?? []
+        newTokens.push(address)
+        state.savedTokens = newTokens
+      }
+      // toggle for delete
+      else if (state.savedTokens && state.savedTokens.includes(address)) {
+        const newTokens = state.savedTokens.filter((x) => x !== address)
+        state.savedTokens = newTokens
+      }
+    })
+    .addCase(addSavedPool, (state, { payload: { address } }) => {
+      if (!state.savedPools || !state.savedPools.includes(address)) {
+        const newPools = state.savedPools ?? []
+        newPools.push(address)
+        state.savedPools = newPools
+      } else if (state.savedPools && state.savedPools.includes(address)) {
+        const newPools = state.savedPools.filter((x) => x !== address)
+        state.savedPools = newPools
+      }
+    })
+    .addCase(toggleURLWarning, (state) => {
+      state.URLWarningVisible = !state.URLWarningVisible
     })
 )

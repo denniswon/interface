@@ -86,6 +86,8 @@ export default function App() {
             <Polling />
             <TopLevelModals />
             <Switch>
+              <Route exact strict path="/watch" component={Pool} />
+
               <Route exact strict path="/vote" component={Vote} />
               <Route exact strict path="/vote/:governorIndex/:id" component={VotePage} />
               <Route exact strict path="/claim" component={OpenClaimAddressModalAndRedirectToSwap} />

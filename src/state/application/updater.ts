@@ -1,4 +1,6 @@
 import { CHAIN_INFO } from 'constants/chains'
+import { SUBGRAPH_SUPPORTED_NETWORKS } from 'constants/networks'
+import { useFetchedSubgraphStatus } from 'data/application'
 import useDebounce from 'hooks/useDebounce'
 import useIsWindowVisible from 'hooks/useIsWindowVisible'
 import { useActiveWeb3React } from 'hooks/web3'
@@ -9,7 +11,7 @@ import { useAppDispatch, useAppSelector } from 'state/hooks'
 import { supportedChainId } from 'utils/supportedChainId'
 import { switchToNetwork } from 'utils/switchToNetwork'
 
-import { useBlockNumber } from './hooks'
+import { useActiveNetworkVersion, useBlockNumber, useSubgraphStatus } from './hooks'
 import { setChainConnectivityWarning, setImplements3085, updateBlockNumber, updateChainId } from './reducer'
 
 function useQueryCacheInvalidator() {
@@ -62,6 +64,30 @@ function useBlockWarningTimer() {
   }, [chainId, chainConnectivityWarningActive, dispatch, isWindowVisible, msSinceLastBlock, setMsSinceLastBlock])
 }
 
+function useSubgraphStatusForNetwork() {
+  const { chainId } = useActiveWeb3React()
+  const [activeNetworkVersion, updateActiveNetworkVersion] = useActiveNetworkVersion()
+  const [status, updateStatus] = useSubgraphStatus()
+  const { available, syncedBlock: newSyncedBlock, headBlock } = useFetchedSubgraphStatus()
+
+  const syncedBlock = status.syncedBlock
+
+  useEffect(() => {
+    if (chainId && chainId != activeNetworkVersion?.chainId) {
+      updateActiveNetworkVersion(SUBGRAPH_SUPPORTED_NETWORKS[chainId])
+    }
+  }, [activeNetworkVersion?.chainId, chainId, updateActiveNetworkVersion])
+
+  useEffect(() => {
+    if (status.available === null && available !== null) {
+      updateStatus(available, syncedBlock, headBlock)
+    }
+    if (!status.syncedBlock || (status.syncedBlock !== newSyncedBlock && syncedBlock)) {
+      updateStatus(status.available, newSyncedBlock, headBlock)
+    }
+  }, [available, headBlock, newSyncedBlock, status.available, status.syncedBlock, syncedBlock, updateStatus])
+}
+
 export default function Updater(): null {
   const { account, chainId, library } = useActiveWeb3React()
   const dispatch = useAppDispatch()
@@ -74,6 +100,7 @@ export default function Updater(): null {
 
   useBlockWarningTimer()
   useQueryCacheInvalidator()
+  useSubgraphStatusForNetwork()
 
   const blockNumberCallback = useCallback(
     (blockNumber: number) => {

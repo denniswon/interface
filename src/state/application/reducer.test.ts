@@ -1,3 +1,4 @@
+import { EthereumNetworkInfo } from 'constants/networks'
 import { createStore, Store } from 'redux'
 
 import reducer, {
@@ -23,6 +24,12 @@ describe('application reducer', () => {
       implements3085: false,
       openModal: null,
       popupList: [],
+      subgraphStatus: {
+        available: null,
+        syncedBlock: undefined,
+        headBlock: undefined,
+      },
+      activeNetworkVersion: EthereumNetworkInfo,
     })
   })
 

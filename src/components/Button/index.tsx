@@ -1,6 +1,7 @@
 import useTheme from 'hooks/useTheme'
 import { darken } from 'polished'
-import { Check, ChevronDown } from 'react-feather'
+import { HTMLAttributes } from 'react'
+import { Check, ChevronDown, Star } from 'react-feather'
 import { Button as RebassButton, ButtonProps as ButtonPropsOriginal } from 'rebass/styled-components'
 import styled from 'styled-components/macro'
 
@@ -362,3 +363,45 @@ export function ButtonRadioChecked({ active = false, children, ...rest }: { acti
     )
   }
 }
+
+const HoverIcon = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  :hover {
+    cursor: pointer;
+    opacity: 0.6;
+  }
+`
+
+export const SavedIcon = ({
+  fill = false,
+  size = '20px',
+  ...rest
+}: { fill: boolean; size?: string } & HTMLAttributes<HTMLDivElement>) => {
+  const theme = useTheme()
+  return (
+    <HoverIcon {...rest}>
+      <Star stroke={theme.text2} fill={fill ? theme.text2 : 'transparent'} size={size} />
+    </HoverIcon>
+  )
+}
+
+export const SmallOptionButton = styled(BaseButton)<{ active?: boolean }>`
+  padding: 4px;
+  width: fit-content;
+  font-size: 12px;
+  border-radius: 4px;
+  min-width: 36px;
+  background-color: ${({ active, theme }) => (active ? theme.bg2 : theme.bg1)};
+  color: ${({ active, theme }) => (active ? theme.text1 : theme.text2)};
+
+  :hover {
+    opacity: 0.6;
+  }
+`
+
+export const SmallOption = styled(ButtonOutlined)`
+  padding: 4px;
+`

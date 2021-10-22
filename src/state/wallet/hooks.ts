@@ -7,7 +7,7 @@ import JSBI from 'jsbi'
 import { useMemo } from 'react'
 
 import { UNI } from '../../constants/tokens'
-import { useAllTokens } from '../../hooks/Tokens'
+import { useAllTokens } from '../../hooks/tokens'
 import { useMulticall2Contract } from '../../hooks/useContract'
 import { useActiveWeb3React } from '../../hooks/web3'
 import { isAddress } from '../../utils'

@@ -9,7 +9,7 @@ import { Text } from 'rebass'
 import styled from 'styled-components/macro'
 
 import TokenListLogo from '../../assets/svg/tokenlist.svg'
-import { useIsUserAddedToken } from '../../hooks/Tokens'
+import { useIsUserAddedToken } from '../../hooks/tokens'
 import { useActiveWeb3React } from '../../hooks/web3'
 import { useCombinedActiveList } from '../../state/lists/hooks'
 import { WrappedTokenInfo } from '../../state/lists/wrappedTokenInfo'

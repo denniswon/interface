@@ -274,6 +274,9 @@ export default function Header() {
         </UniIcon>
       </Title>
       <HeaderLinks>
+        <StyledNavLink id={`watch-nav-link`} to={'/watch'}>
+          <Trans>Watch</Trans>
+        </StyledNavLink>
         <StyledNavLink id={`swap-nav-link`} to={'/swap'}>
           <Trans>Swap</Trans>
         </StyledNavLink>
