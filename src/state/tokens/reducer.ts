@@ -1,15 +1,16 @@
-import { currentTimestamp } from './../../utils/index'
+import { createReducer } from '@reduxjs/toolkit'
+import { SupportedNetwork } from 'constants/networks'
+import { PriceChartEntry, Transaction } from 'types'
+
+import { currentTimestamp } from './../../utils'
 import {
-  updateTokenData,
-  addTokenKeys,
   addPoolAddresses,
+  addTokenKeys,
   updateChartData,
   updatePriceData,
+  updateTokenData,
   updateTransactions,
 } from './actions'
-import { createReducer } from '@reduxjs/toolkit'
-import { PriceChartEntry, Transaction } from 'types'
-import { SupportedNetwork } from 'constants/networks'
 
 export type TokenData = {
   // token is in some pool on uniswap

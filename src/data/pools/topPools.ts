@@ -40,7 +40,7 @@ export function useTopPoolAddresses(): {
   }, [data])
 
   return {
-    loading: loading,
+    loading,
     error: Boolean(error),
     addresses: formattedData,
   }

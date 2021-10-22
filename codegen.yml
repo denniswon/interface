@@ -1,8 +1,6 @@
 overrideExisting: true
 schema: [
-  'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3',
-  'https://api.thegraph.com/subgraphs/name/ianlapham/uniswap-v3-rinkeby',
-  './schema.json'
+  'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3'
 ]
 documents: 'src/**/!(*.d).{ts,tsx}'
 generates:

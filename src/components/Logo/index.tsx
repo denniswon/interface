@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Slash } from 'react-feather'
 import { ImageProps } from 'rebass'
+import styled from 'styled-components/macro'
 
 import useTheme from '../../hooks/useTheme'
 
@@ -37,3 +38,8 @@ export default function Logo({ srcs, alt, style, ...rest }: LogoProps) {
 
   return <Slash {...rest} style={{ ...style, color: theme.bg4 }} />
 }
+
+export const GenericImageWrapper = styled.img<{ size?: string }>`
+  width: ${({ size }) => size ?? '20px'};
+  height: ${({ size }) => size ?? '20px'};
+`

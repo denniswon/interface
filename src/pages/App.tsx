@@ -12,6 +12,7 @@ import Web3ReactManager from '../components/Web3ReactManager'
 import { useModalOpen, useToggleModal } from '../state/application/hooks'
 import { ApplicationModal } from '../state/application/reducer'
 import DarkModeQueryParamReader from '../theme/DarkModeQueryParamReader'
+import AccountsOverview from './Accounts/AccountsOverview'
 import AddLiquidity from './AddLiquidity'
 import { RedirectDuplicateTokenIds } from './AddLiquidity/redirects'
 import { RedirectDuplicateTokenIdsV2 } from './AddLiquidityV2/redirects'
@@ -86,7 +87,7 @@ export default function App() {
             <Polling />
             <TopLevelModals />
             <Switch>
-              <Route exact strict path="/watch" component={Pool} />
+              <Route exact strict path="/accounts" component={AccountsOverview} />
 
               <Route exact strict path="/vote" component={Vote} />
               <Route exact strict path="/vote/:governorIndex/:id" component={VotePage} />

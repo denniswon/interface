@@ -21,7 +21,6 @@ import {
   removePopup,
   setOpenModal,
   updateActiveNetworkVersion,
-  updateSubgraphStatus,
 } from './reducer'
 
 export function useBlockNumber(): number | undefined {
@@ -96,27 +95,6 @@ export function useRemovePopup(): (key: string) => void {
 export function useActivePopups(): AppState['application']['popupList'] {
   const list = useAppSelector((state: AppState) => state.application.popupList)
   return useMemo(() => list.filter((item) => item.show), [list])
-}
-
-// returns a function that allows adding a popup
-export function useSubgraphStatus(): [
-  {
-    available: boolean | null
-    syncedBlock: number | undefined
-    headBlock: number | undefined
-  },
-  (available: boolean | null, syncedBlock: number | undefined, headBlock: number | undefined) => void
-] {
-  const dispatch = useAppDispatch()
-  const status = useAppSelector((state: AppState) => state.application.subgraphStatus)
-
-  const update = useCallback(
-    (available: boolean | null, syncedBlock: number | undefined, headBlock: number | undefined) => {
-      dispatch(updateSubgraphStatus({ available, syncedBlock, headBlock }))
-    },
-    [dispatch]
-  )
-  return [status, update]
 }
 
 // returns a function that allows adding a popup

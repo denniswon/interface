@@ -12,6 +12,7 @@
   "private": true,
   "devDependencies": {
     "@apollo/client": "^3.3.15",
+    "@compound-finance/compound-js": "^0.4.1",
     "@data-ui/histogram": "^0.0.84",
     "@davatar/react": "1.8.1",
     "@ethersproject/experimental": "^5.4.0",
@@ -158,7 +159,7 @@
     "graphql": "15.5.0"
   },
   "scripts": {
-    "codegen:schema": "npx apollo client:download-schema --endpoint=https://api.thegraph.com/subgraphs/name/ianlapham/uniswap-v3-rinkeby",
+    "codegen:schema": "npx apollo client:download-schema --endpoint=https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3",
     "codegen:generate": "apollo codegen:generate --localSchemaFile=schema.json --target=typescript --includes=src/**/*.ts --tagName=gql --addTypename --globalTypesFile=src/types/graphql-global-types.ts --outputFlat './src/types'",
     "contracts:compile:abi": "typechain --target ethers-v5 --out-dir src/abis/types './src/abis/**/*.json'",
     "contracts:compile:v3": "typechain --target ethers-v5 --out-dir src/types/v3 './node_modules/@uniswap/?(v3-core|v3-periphery)/artifacts/contracts/**/*.json'",

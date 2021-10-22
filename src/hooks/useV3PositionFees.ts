@@ -8,7 +8,7 @@ import { unwrappedToken } from 'utils/unwrappedToken'
 
 import { useV3NFTPositionManagerContract } from './useContract'
 
-const MAX_UINT128 = BigNumber.from(2).pow(128).sub(1)
+export const MAX_UINT128 = BigNumber.from(2).pow(128).sub(1)
 
 // compute current + counterfactual fees for a v3 position
 export function useV3PositionFees(

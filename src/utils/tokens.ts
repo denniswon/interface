@@ -1,5 +1,6 @@
 import { Token } from '@uniswap/sdk-core'
-import { WETH_ADDRESS, WETH_ADDRESSES } from '../constants/index'
+
+import { WETH_ADDRESSES } from '../constants'
 
 export interface SerializedToken {
   chainId: number

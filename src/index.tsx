@@ -17,8 +17,12 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration'
 import store from './state'
 import ApplicationUpdater from './state/application/updater'
 import ListsUpdater from './state/lists/updater'
+import ListUpdater from './state/lists/updater'
 import LogsUpdater from './state/logs/updater'
 import MulticallUpdater from './state/multicall/updater'
+import PoolUpdater from './state/pools/updater'
+import ProtocolUpdater from './state/protocol/updater'
+import TokenUpdater from './state/tokens/updater'
 import TransactionUpdater from './state/transactions/updater'
 import UserUpdater from './state/user/updater'
 import ThemeProvider, { ThemedGlobalStyle } from './theme'
@@ -41,6 +45,10 @@ function Updaters() {
       <TransactionUpdater />
       <MulticallUpdater />
       <LogsUpdater />
+      <ListUpdater />
+      <ProtocolUpdater />
+      <TokenUpdater />
+      <PoolUpdater />
     </>
   )
 }

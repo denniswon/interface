@@ -53,10 +53,14 @@ export async function fetchPoolChartData(address: string, client: ApolloClient<N
 
   try {
     while (!allFound) {
-      const { data: chartResData, error, loading } = await client.query<ChartResults>({
+      const {
+        data: chartResData,
+        error,
+        loading,
+      } = await client.query<ChartResults>({
         query: POOL_CHART,
         variables: {
-          address: address,
+          address,
           startTime: startTimestamp,
           skip,
         },

@@ -1,7 +1,7 @@
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
 import gql from 'graphql-tag'
 import { useBlocksFromTimestamps } from 'hooks/useBlocksFromTimestamps'
-import { useEffect, useMemo,useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useActiveNetworkVersion, useClients } from 'state/application/hooks'
 import { useDeltaTimestamps } from 'utils/queries'
 
