@@ -15,7 +15,7 @@ export const POOLS_BULK = (block: number | undefined, pools: string[]) => {
   poolString += ']'
   const queryString =
     `
-    query pools {
+    query pools_bulk {
       pools(where: {id_in: ${poolString}},` +
     (block ? `block: {number: ${block}} ,` : ``) +
     ` orderBy: totalValueLockedUSD, orderDirection: desc, subgraphError: allow) {

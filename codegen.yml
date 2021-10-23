@@ -2,7 +2,7 @@ overrideExisting: true
 schema: [
   'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3'
 ]
-documents: 'src/**/!(*.d).{ts,tsx}'
+documents: 'src/state/**/!(*.d).{ts,tsx}'
 generates:
   ./src/state/data/generated.ts:
     plugins:
@@ -11,3 +11,4 @@ generates:
       - typescript-rtk-query:
           importBaseApiFrom: './slice'
           exportHooks: true
+          overrideExisting: 'module.hot?.status() === "apply"'

@@ -159,8 +159,8 @@
     "graphql": "15.5.0"
   },
   "scripts": {
-    "codegen:schema": "npx apollo client:download-schema --endpoint=https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3",
-    "codegen:generate": "apollo codegen:generate --localSchemaFile=schema.json --target=typescript --includes=src/**/*.ts --tagName=gql --addTypename --globalTypesFile=src/types/graphql-global-types.ts --outputFlat './src/types'",
+    "codegen:schema": "apollo client:download-schema --endpoint=https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3",
+    "codegen:generate": "mkdir -p src/types/graph; apollo codegen:generate --localSchemaFile=schema.json --target=typescript --includes=src/data/**/*.ts --tagName=gql --addTypename --globalTypesFile=src/types/graphql-global-types.ts  --outputFlat './src/types/graph/index.ts'",
     "contracts:compile:abi": "typechain --target ethers-v5 --out-dir src/abis/types './src/abis/**/*.json'",
     "contracts:compile:v3": "typechain --target ethers-v5 --out-dir src/types/v3 './node_modules/@uniswap/?(v3-core|v3-periphery)/artifacts/contracts/**/*.json'",
     "contracts:compile": "yarn contracts:compile:abi && yarn contracts:compile:v3",

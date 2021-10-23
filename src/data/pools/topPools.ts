@@ -4,7 +4,7 @@ import { useMemo } from 'react'
 import { useClients } from 'state/application/hooks'
 
 export const TOP_POOLS = gql`
-  query topPools {
+  query top_pools {
     pools(first: 50, orderBy: totalValueLockedUSD, orderDirection: desc, subgraphError: allow) {
       id
     }

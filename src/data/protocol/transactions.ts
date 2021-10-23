@@ -4,7 +4,7 @@ import { Transaction, TransactionType } from 'types'
 import { formatTokenSymbol } from 'utils/tokens'
 
 const TOP_TRANSACTIONS = gql`
-  query topTransactions {
+  query top_transactions {
     transactions(first: 500, orderBy: timestamp, orderDirection: desc, subgraphError: allow) {
       id
       timestamp

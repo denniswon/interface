@@ -33,7 +33,7 @@ export const PRICES_BY_BLOCK = (tokenAddress: string, blocks: any) => {
 }
 
 const PRICE_CHART = gql`
-  query tokenHourDatas($startTime: Int!, $skip: Int!, $address: String!) {
+  query token_hour_datas($startTime: Int!, $skip: Int!, $address: String!) {
     tokenHourDatas(
       first: 100
       skip: $skip

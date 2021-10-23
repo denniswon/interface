@@ -9,7 +9,7 @@ import { TokenData } from 'state/tokens/reducer'
 import { escapeRegExp, notEmpty } from 'utils'
 
 export const TOKEN_SEARCH = gql`
-  query tokens($value: String, $id: ID) {
+  query token_search($value: String, $id: ID) {
     asSymbol: tokens(
       where: { symbol_contains: $value }
       orderBy: totalValueLockedUSD
@@ -42,7 +42,7 @@ export const TOKEN_SEARCH = gql`
 `
 
 export const POOL_SEARCH = gql`
-  query pools($tokens: [String!], $id: ID) {
+  query pools_search($tokens: [String!], $id: ID) {
     as0: pools(where: { token0_in: $tokens }, subgraphError: allow) {
       id
       feeTier

@@ -4,7 +4,7 @@ import { useMemo } from 'react'
 import { useClients } from 'state/application/hooks'
 
 export const TOP_TOKENS = gql`
-  query topTokens {
+  query top_tokens_data {
     tokens(first: 50, orderBy: totalValueLockedUSD, orderDirection: desc, subgraphError: allow) {
       id
     }

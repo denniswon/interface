@@ -10,7 +10,8 @@ import { ProtocolData } from '../../state/protocol/reducer'
 import { getPercentChange } from '../../utils/data'
 
 export const GLOBAL_DATA = (block?: string) => {
-  const queryString = ` query uniswapFactories {
+  const queryString = `
+    query uniswap_factories_data {
       factories(
        ${block ? `block: { number: ${block}}` : ``} 
        first: 1, subgraphError: allow) {
@@ -19,7 +20,8 @@ export const GLOBAL_DATA = (block?: string) => {
         totalFeesUSD
         totalValueLockedUSD
       }
-    }`
+    }
+  `
   return gql(queryString)
 }
 

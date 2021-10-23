@@ -15,7 +15,7 @@ dayjs.extend(weekOfYear)
 const ONE_DAY_UNIX = 24 * 60 * 60
 
 const GLOBAL_CHART = gql`
-  query uniswapDayDatas($startTime: Int!, $skip: Int!) {
+  query uniswap_day_datas($startTime: Int!, $skip: Int!) {
     uniswapDayDatas(
       first: 1000
       skip: $skip

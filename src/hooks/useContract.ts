@@ -31,8 +31,7 @@ import {
   V3_MIGRATOR_ADDRESSES,
 } from 'constants/addresses'
 import { useMemo } from 'react'
-import { NonfungiblePositionManager, Quoter, UniswapInterfaceMulticall } from 'types/v3'
-import { V3Migrator } from 'types/v3/V3Migrator'
+import { NonfungiblePositionManager, Quoter, UniswapInterfaceMulticall, V3Migrator } from 'types/v3'
 import { getContract } from 'utils'
 
 import { ArgentWalletDetector, EnsPublicResolver, EnsRegistrar, Erc20, Weth } from '../abis/types'

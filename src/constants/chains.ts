@@ -109,6 +109,7 @@ export const CHAIN_INFO: ChainInfo = {
     explorer: 'https://rinkeby.etherscan.io/',
     infoLink: 'https://info.uniswap.org/#/',
     label: 'Rinkeby',
+    logoUrl: ethereumLogoUrl,
     nativeCurrency: { name: 'Rinkeby ETH', symbol: 'rinkETH', decimals: 18 },
   },
   [SupportedChainId.ROPSTEN]: {
@@ -116,6 +117,7 @@ export const CHAIN_INFO: ChainInfo = {
     explorer: 'https://ropsten.etherscan.io/',
     infoLink: 'https://info.uniswap.org/#/',
     label: 'Ropsten',
+    logoUrl: ethereumLogoUrl,
     nativeCurrency: { name: 'Ropsten ETH', symbol: 'ropETH', decimals: 18 },
   },
   [SupportedChainId.KOVAN]: {

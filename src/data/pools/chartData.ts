@@ -11,7 +11,7 @@ dayjs.extend(weekOfYear)
 const ONE_DAY_UNIX = 24 * 60 * 60
 
 const POOL_CHART = gql`
-  query poolDayDatas($startTime: Int!, $skip: Int!, $address: String!) {
+  query pool_day_datas($startTime: Int!, $skip: Int!, $address: String!) {
     poolDayDatas(
       first: 1000
       skip: $skip

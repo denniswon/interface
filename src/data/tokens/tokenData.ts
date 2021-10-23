@@ -16,7 +16,7 @@ export const TOKENS_BULK = (block: number | undefined, tokens: string[]) => {
   tokenString += ']'
   const queryString =
     `
-    query tokens {
+    query tokens_bulk {
       tokens(where: {id_in: ${tokenString}},` +
     (block ? `block: {number: ${block}} ,` : ``) +
     ` orderBy: totalValueLockedUSD, orderDirection: desc, subgraphError: allow) {

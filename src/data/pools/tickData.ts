@@ -71,7 +71,12 @@ const fetchInitializedTicks = async (
   client: ApolloClient<NormalizedCacheObject>
 ): Promise<{ loading?: boolean; error?: boolean; ticks?: Tick[] }> => {
   const tickQuery = gql`
-    query surroundingTicks($poolAddress: String, $tickIdxLowerBound: BigInt!, $tickIdxUpperBound: BigInt!, $skip: Int!) {
+    query surrounding_ticks(
+      $poolAddress: String
+      $tickIdxLowerBound: BigInt!
+      $tickIdxUpperBound: BigInt!
+      $skip: Int!
+    ) {
       ticks(
         subgraphError: allow
         first: 1000
@@ -128,7 +133,7 @@ export interface PoolTickData {
 }
 
 const poolQuery = gql`
-  query pool($poolAddress: ID!) {
+  query pool_query_data($poolAddress: ID!) {
     pool(id: $poolAddress) {
       tick
       token0 {
