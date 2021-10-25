@@ -5,9 +5,9 @@ import { useMemo } from 'react'
 import { useClients } from 'state/application/hooks'
 import { useDeltaTimestamps } from 'utils/queries'
 
-import { arbitrumBlockClient, arbitrumClient, blockClient, client } from '../../apollo/client'
 import { ProtocolData } from '../../state/protocol/reducer'
 import { getPercentChange } from '../../utils/data'
+import { arbitrumBlockClient, arbitrumClient, blockClient, client } from '../apollo/client'
 
 export const GLOBAL_DATA = (block?: string) => {
   const queryString = `

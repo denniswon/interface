@@ -13,7 +13,7 @@ import { PoolData } from 'state/pools/reducer'
 import styled from 'styled-components/macro'
 import { TYPE } from 'theme'
 import { feeTierPercent } from 'utils'
-import { networkPrefix } from 'utils/networkPrefix'
+import { networkPrefix } from 'utils/network'
 import { formatDollarAmount } from 'utils/numbers'
 
 import { POOL_HIDE } from '../../constants'

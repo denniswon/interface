@@ -1,6 +1,5 @@
-import React from 'react'
-import { TYPE } from 'theme'
 import styled from 'styled-components/macro'
+import { TYPE } from 'theme'
 
 const Wrapper = styled(TYPE.main)<{ fontWeight: number; fontSize: string; negative: boolean; neutral: boolean }>`
   font-size: ${({ fontSize }) => fontSize};

@@ -16,7 +16,7 @@ import { useSavedPools, useSavedTokens } from 'state/user/hooks'
 import styled from 'styled-components/macro'
 import { HideSmall, TYPE } from 'theme'
 import { feeTierPercent } from 'utils'
-import { networkPrefix } from 'utils/networkPrefix'
+import { networkPrefix } from 'utils/network'
 import { formatDollarAmount } from 'utils/numbers'
 
 import { POOL_HIDE, TOKEN_HIDE } from '../../constants'

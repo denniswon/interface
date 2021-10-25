@@ -11,7 +11,7 @@ import {
   client,
   optimismBlockClient,
   optimismClient,
-} from '../../apollo/client'
+} from '../../data/apollo/client'
 import { useActiveWeb3React } from '../../hooks/web3'
 import { AppState } from '../index'
 import {
@@ -97,7 +97,6 @@ export function useActivePopups(): AppState['application']['popupList'] {
   return useMemo(() => list.filter((item) => item.show), [list])
 }
 
-// returns a function that allows adding a popup
 export function useActiveNetworkVersion(): [NetworkInfo, (activeNetworkVersion: NetworkInfo) => void] {
   const dispatch = useAppDispatch()
   const activeNetwork = useAppSelector((state: AppState) => state.application.activeNetworkVersion)

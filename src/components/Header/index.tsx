@@ -274,6 +274,9 @@ export default function Header() {
         </UniIcon>
       </Title>
       <HeaderLinks>
+        <StyledNavLink id={`collaterals-nav-link`} to={'/collaterals'}>
+          <Trans>Collaterals</Trans>
+        </StyledNavLink>
         <StyledNavLink id={`accounts-nav-link`} to={'/accounts'}>
           <Trans>Accounts</Trans>
         </StyledNavLink>

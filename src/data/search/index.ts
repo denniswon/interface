@@ -1,4 +1,4 @@
-import { client } from 'apollo/client'
+import { client } from 'data/apollo/client'
 import { useFetchedTokenDatas } from 'data/tokens/tokenData'
 import gql from 'graphql-tag'
 import { useEffect, useMemo, useState } from 'react'

@@ -1,5 +1,5 @@
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
-import { arbitrumClient, optimismClient } from 'apollo/client'
+import { arbitrumClient, optimismClient } from 'data/apollo/client'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import weekOfYear from 'dayjs/plugin/weekOfYear'

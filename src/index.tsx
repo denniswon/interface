@@ -16,6 +16,7 @@ import App from './pages/App'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration'
 import store from './state'
 import ApplicationUpdater from './state/application/updater'
+import CollateralUpdater from './state/collaterals/updater'
 import ListsUpdater from './state/lists/updater'
 import ListUpdater from './state/lists/updater'
 import LogsUpdater from './state/logs/updater'
@@ -49,6 +50,7 @@ function Updaters() {
       <ProtocolUpdater />
       <TokenUpdater />
       <PoolUpdater />
+      <CollateralUpdater />
     </>
   )
 }

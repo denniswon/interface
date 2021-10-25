@@ -3,6 +3,12 @@ import arbitrumLogoUrl from 'assets/svg/arbitrum_logo.svg'
 import optimismLogoUrl from 'assets/svg/optimistic_ethereum.svg'
 import ms from 'ms.macro'
 
+export enum CompoundChainId {
+  MAINNET = 1,
+  ROPSTEN = 3,
+  RINKEBY = 4,
+}
+
 export enum SupportedChainId {
   MAINNET = 1,
   ROPSTEN = 3,

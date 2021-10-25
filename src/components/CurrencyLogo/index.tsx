@@ -2,26 +2,12 @@ import { Currency } from '@uniswap/sdk-core'
 import { SupportedChainId } from 'constants/chains'
 import React, { useMemo } from 'react'
 import styled from 'styled-components/macro'
+import { chainIdToNetworkName } from 'utils/network'
 
 import EthereumLogo from '../../assets/images/ethereum-logo.png'
 import useHttpLocations from '../../hooks/useHttpLocations'
 import { WrappedTokenInfo } from '../../state/lists/wrappedTokenInfo'
 import Logo from '../Logo'
-
-type Network = 'ethereum' | 'arbitrum' | 'optimism'
-
-function chainIdToNetworkName(networkId: SupportedChainId): Network {
-  switch (networkId) {
-    case SupportedChainId.MAINNET:
-      return 'ethereum'
-    case SupportedChainId.ARBITRUM_ONE:
-      return 'arbitrum'
-    case SupportedChainId.OPTIMISM:
-      return 'optimism'
-    default:
-      return 'ethereum'
-  }
-}
 
 export const getTokenLogoURL = (
   address: string,

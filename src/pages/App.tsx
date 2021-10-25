@@ -12,10 +12,13 @@ import Web3ReactManager from '../components/Web3ReactManager'
 import { useModalOpen, useToggleModal } from '../state/application/hooks'
 import { ApplicationModal } from '../state/application/reducer'
 import DarkModeQueryParamReader from '../theme/DarkModeQueryParamReader'
+import AccountPage from './Accounts/AccountPage'
 import AccountsOverview from './Accounts/AccountsOverview'
 import AddLiquidity from './AddLiquidity'
 import { RedirectDuplicateTokenIds } from './AddLiquidity/redirects'
 import { RedirectDuplicateTokenIdsV2 } from './AddLiquidityV2/redirects'
+import CompAccountPage from './CompAccounts/CompAccountPage'
+import CompAccountsOverview from './CompAccounts/CompAccountsOverview'
 import CreateProposal from './CreateProposal'
 import Earn from './Earn'
 import Manage from './Earn/Manage'
@@ -88,6 +91,10 @@ export default function App() {
             <TopLevelModals />
             <Switch>
               <Route exact strict path="/accounts" component={AccountsOverview} />
+              <Route exact strict path="/accounts/:address" component={AccountPage} />
+
+              <Route exact strict path="/collaterals" component={CompAccountsOverview} />
+              <Route exact strict path="/collaterals/:address" component={CompAccountPage} />
 
               <Route exact strict path="/vote" component={Vote} />
               <Route exact strict path="/vote/:governorIndex/:id" component={VotePage} />
