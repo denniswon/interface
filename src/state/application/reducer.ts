@@ -30,7 +30,7 @@ export interface ApplicationState {
   readonly implements3085: boolean
   readonly openModal: ApplicationModal | null
   readonly popupList: PopupList
-  readonly subgraphStatus?: {
+  readonly subgraphStatus: {
     available: boolean | null
     syncedBlock: number | undefined
     headBlock: number | undefined
@@ -45,6 +45,11 @@ const initialState: ApplicationState = {
   implements3085: false,
   openModal: null,
   popupList: [],
+  subgraphStatus: {
+    available: null,
+    syncedBlock: undefined,
+    headBlock: undefined,
+  },
   activeNetworkVersion: EthereumNetworkInfo,
 }
 

@@ -7,12 +7,10 @@ import { ClickableText, Label } from 'components/Text'
 import useTheme from 'hooks/useTheme'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useActiveNetworkVersion } from 'state/application/hooks'
 import { CompAccountChartEntry } from 'state/collaterals/reducer'
-import { cValue } from 'state/collaterals/utils'
+import { formatCValue } from 'state/collaterals/utils'
 import styled from 'styled-components/macro'
 import { TYPE } from 'theme'
-import { networkPrefix } from 'utils/network'
 
 const Wrapper = styled(DarkGreyCard)`
   width: 100%;
@@ -56,25 +54,23 @@ const LinkWrapper = styled(Link)`
 `
 
 const DataRow = ({ account, index }: { account: CompAccountChartEntry; index: number }) => {
-  const [activeNetwork] = useActiveNetworkVersion()
-
   return (
-    <LinkWrapper to={networkPrefix(activeNetwork) + 'address/' + account.data.address}>
+    <LinkWrapper to={'collaterals/' + account.data.address}>
       <ResponsiveGrid>
         <Label fontWeight={400}>{index + 1}</Label>
         <Label fontWeight={400}>
           <RowFixed>
             <TYPE.label ml="8px">{account.data.address}</TYPE.label>
             <GreyBadge ml="10px" fontSize="14px">
-              {account.data.health?.value}
+              {account.data.health ? formatCValue(account.data.health) : 'NaN'}
             </GreyBadge>
           </RowFixed>
         </Label>
         <Label end={1} fontWeight={400}>
-          {cValue(account.data.total_borrow_value_in_eth)}
+          {formatCValue(account.data.total_borrow_value_in_eth)}
         </Label>
         <Label end={1} fontWeight={400}>
-          {cValue(account.data.total_collateral_value_in_eth)}
+          {formatCValue(account.data.total_collateral_value_in_eth)}
         </Label>
       </ResponsiveGrid>
     </LinkWrapper>
@@ -108,9 +104,11 @@ export default function CompAccountsTable({
     return <Loader />
   }
 
+  const pageAccounts = accounts.slice(page - 1, page + MAX_ITEMS - 1)
+
   return (
     <Wrapper>
-      {accounts.length > 0 ? (
+      {pageAccounts.length > 0 ? (
         <AutoColumn gap="16px">
           <ResponsiveGrid>
             <Label color={theme.text2}>#</Label>
@@ -120,7 +118,7 @@ export default function CompAccountsTable({
             <ClickableText color={theme.text2}>Total Collateral (ETH)</ClickableText>
           </ResponsiveGrid>
           <Break />
-          {accounts.map((account, i) => {
+          {pageAccounts.map((account, i) => {
             if (account) {
               return (
                 <React.Fragment key={i}>

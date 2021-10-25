@@ -73,6 +73,7 @@ export default createReducer(initialState, (builder) =>
   builder
     .addCase(updateCompAccountsData, (state, { payload: { compAccounts, chainId = CompoundChainId.MAINNET } }) => {
       compAccounts.forEach((compAccountData: CompAccountData) => {
+        if (!state.compAccountsMap[chainId]) return
         const entry: CompAccountChartEntry = {
           data: compAccountData,
           lastUpdated: currentTimestamp(),
@@ -84,6 +85,7 @@ export default createReducer(initialState, (builder) =>
     .addCase(
       updatePaginationSummary,
       (state, { payload: { paginationSummary, chainId = CompoundChainId.MAINNET } }) => {
+        if (!state.compAccountsMap[chainId]) return
         state.paginationSummary[chainId] = paginationSummary
       }
     )
