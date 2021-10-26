@@ -10,7 +10,7 @@ import { notEmpty } from 'utils'
 import { PageWrapper } from './styled'
 // import TopPoolMovers from 'components/pools/TopPoolMovers'
 
-export default function AccountsOverview() {
+export default function PoolsOverview() {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])

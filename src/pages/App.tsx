@@ -12,13 +12,12 @@ import Web3ReactManager from '../components/Web3ReactManager'
 import { useModalOpen, useToggleModal } from '../state/application/hooks'
 import { ApplicationModal } from '../state/application/reducer'
 import DarkModeQueryParamReader from '../theme/DarkModeQueryParamReader'
-import AccountPage from './Accounts/AccountPage'
-import AccountsOverview from './Accounts/AccountsOverview'
 import AddLiquidity from './AddLiquidity'
 import { RedirectDuplicateTokenIds } from './AddLiquidity/redirects'
 import { RedirectDuplicateTokenIdsV2 } from './AddLiquidityV2/redirects'
 import CompAccountPage from './CompAccounts/CompAccountPage'
 import CompAccountsOverview from './CompAccounts/CompAccountsOverview'
+import { RedirectPathToCollateralsOnly } from './CompAccounts/redirects'
 import CreateProposal from './CreateProposal'
 import Earn from './Earn'
 import Manage from './Earn/Manage'
@@ -28,6 +27,8 @@ import Pool from './Pool'
 import { PositionPage } from './Pool/PositionPage'
 import PoolV2 from './Pool/v2'
 import PoolFinder from './PoolFinder'
+import PoolPage from './Pools/PoolPage'
+import PoolsOverview from './Pools/PoolsOverview'
 import RemoveLiquidity from './RemoveLiquidity'
 import RemoveLiquidityV3 from './RemoveLiquidity/V3'
 import Swap from './Swap'
@@ -90,9 +91,10 @@ export default function App() {
             <Polling />
             <TopLevelModals />
             <Switch>
-              <Route exact strict path="/accounts" component={AccountsOverview} />
-              <Route exact strict path="/accounts/:address" component={AccountPage} />
+              <Route exact strict path="/pools" component={PoolsOverview} />
+              <Route exact strict path="/pools/:pool" component={PoolPage} />
 
+              <Route component={RedirectPathToCollateralsOnly} />
               <Route exact strict path="/collaterals" component={CompAccountsOverview} />
               <Route exact strict path="/collaterals/:address" component={CompAccountPage} />
 
@@ -133,7 +135,7 @@ export default function App() {
               <Route exact strict path="/migrate/v2/:address" component={MigrateV2Pair} />
 
               <Route exact strict path="/create-proposal" component={CreateProposal} />
-              <Route component={RedirectPathToSwapOnly} />
+              {/* <Route component={RedirectPathToSwapOnly} /> */}
             </Switch>
             <Marginer />
           </BodyWrapper>

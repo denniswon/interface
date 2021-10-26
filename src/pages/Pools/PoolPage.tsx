@@ -75,7 +75,7 @@ enum ChartView {
   FEES,
 }
 
-export default function AccountPage({
+export default function PoolPage({
   match: {
     params: { address },
   },

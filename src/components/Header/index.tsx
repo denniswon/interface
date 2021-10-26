@@ -277,8 +277,8 @@ export default function Header() {
         <StyledNavLink id={`collaterals-nav-link`} to={'/collaterals'}>
           <Trans>Collaterals</Trans>
         </StyledNavLink>
-        <StyledNavLink id={`accounts-nav-link`} to={'/accounts'}>
-          <Trans>Accounts</Trans>
+        {/* <StyledNavLink id={`pools-nav-link`} to={'/pools'}>
+          <Trans>Pools</Trans>
         </StyledNavLink>
         <StyledNavLink id={`swap-nav-link`} to={'/swap'}>
           <Trans>Swap</Trans>
@@ -304,7 +304,7 @@ export default function Header() {
         <StyledExternalLink id={`charts-nav-link`} href={infoLink}>
           <Trans>Charts</Trans>
           <sup>↗</sup>
-        </StyledExternalLink>
+        </StyledExternalLink> */}
       </HeaderLinks>
 
       <HeaderControls>
